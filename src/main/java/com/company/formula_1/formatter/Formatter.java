@@ -10,9 +10,7 @@ public class Formatter {
 
     private static final String LINE_BREAK = "\n";
     private static final String SPACE = " ";
-    private static final String DASH = "-";
     private static final String VERTICAL_LINE = "|";
-    private static final String DELIMITER = "";
     SimpleDateFormat FORMAT_TIME = new SimpleDateFormat("mm:ss.SSS");
 
 
@@ -47,6 +45,5 @@ public class Formatter {
                         .append(FORMAT_TIME.format(e.lapTime().getTimeInMillis()))
                         .append(LINE_BREAK));
         System.out.println(result);
-
     }
 }

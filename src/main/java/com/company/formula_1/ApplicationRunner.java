@@ -13,7 +13,10 @@ public class ApplicationRunner {
         List<Racer> racers = parser.racerParse("src/main/resources/abbreviations.txt",
                 "src/main/resources/start.log",
                 "src/main/resources/end.log");
+        for (Racer racer : racers) {
+            System.out.println(racer);
+        }
         Formatter formatter = new Formatter();
-        formatter.format(racers);
+        //formatter.format(racers);
     }
 }
