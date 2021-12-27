@@ -14,7 +14,6 @@ public class ApplicationRunner {
         List<Racer> racers = parser.racerParse("src/main/resources/abbreviations.txt",
                 "src/main/resources/start.log",
                 "src/main/resources/end.log");
-        racers.stream().forEach(System.out::println);
         System.out.println(formatter.format(racers));
     }
 }
