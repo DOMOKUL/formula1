@@ -52,7 +52,6 @@ public class Parser {
         return result;
     }
 
-
     private Map<String, Calendar> parseTime(Path filePath) throws NullPointerException, IllegalArgumentException {
 
         List<String> startOrEndTimeParser = logParse(filePath);
@@ -63,7 +62,6 @@ public class Parser {
         );
         return result;
     }
-
 
     private List<String> logParse(Path filePath) throws NullPointerException, IllegalArgumentException {
         List<String> result = new ArrayList<>();
@@ -82,13 +80,6 @@ public class Parser {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        return calendar;
-    }
-
-    private Calendar getTime(Long time) {
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTimeInMillis(time);
 
         return calendar;
     }
