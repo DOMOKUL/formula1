@@ -27,5 +27,6 @@ Your task is to read data from 2 files, order racers by time and print report th
     16. Brendon Hartley    | SCUDERIA TORO ROSSO HONDA | 1:13.179
     17. Marcus Ericsson    | SAUBER FERRARI           | 1:13.265
 
-Example of results:
+Example of results:    
+
 ![firstCase](https://git.foxminded.com.ua/nikita.strokach/formula_1/uploads/3b6533e54b3334c7ee63a1983c2989db/firstCase.PNG)
