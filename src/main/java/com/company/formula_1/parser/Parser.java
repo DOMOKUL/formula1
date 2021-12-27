@@ -18,22 +18,27 @@ public class Parser {
             new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss.SSS");
 
     public List<Racer> racerParse(String nameAndCommandFilePath, String startTimeFilePath, String endTimeFilePath) {
-        Map<String, Map<String, String>> nameAndCommand = nameAndCommandParse(Paths.get(nameAndCommandFilePath));
-        Map<String, Calendar> startTime = parseTime(Paths.get(startTimeFilePath));
-        Map<String, Calendar> endTime = parseTime(Paths.get(endTimeFilePath));
-        return nameAndCommand.entrySet().stream()
-                .map(e -> {
-                    String racerName = getName(e.getValue());
-                    String racerCommand = getCommand(e.getValue());
-                    Long lapTime = endTime.get(e.getKey()).getTimeInMillis()
-                            - startTime.get(e.getKey()).getTimeInMillis();
+        try {
+            Map<String, Map<String, String>> nameAndCommand = nameAndCommandParse(Paths.get(nameAndCommandFilePath));
+            Map<String, Calendar> startTime = parseTime(Paths.get(startTimeFilePath));
+            Map<String, Calendar> endTime = parseTime(Paths.get(endTimeFilePath));
+            return nameAndCommand.entrySet().stream()
+                    .map(e -> {
+                        String racerName = getName(e.getValue());
+                        String racerCommand = getCommand(e.getValue());
+                        Long lapTime = endTime.get(e.getKey()).getTimeInMillis()
+                                - startTime.get(e.getKey()).getTimeInMillis();
 
-                    return new Racer(racerName, racerCommand, getTime(lapTime));
-                })
-                .collect(Collectors.toList());
+                        return new Racer(racerName, racerCommand, lapTime);
+                    })
+                    .collect(Collectors.toList());
+        } catch (NullPointerException e) {
+            throw new NullPointerException("FilePath is null");
+
+        }
     }
 
-    private Map<String, Map<String, String>> nameAndCommandParse(Path filePath) {
+    private Map<String, Map<String, String>> nameAndCommandParse(Path filePath) throws NullPointerException, IllegalArgumentException {
         List<String> abbreviations = logParse(filePath);
         Map<String, Map<String, String>> result = new HashMap<>();
 
@@ -47,7 +52,9 @@ public class Parser {
         return result;
     }
 
-    private Map<String, Calendar> parseTime(Path filePath) {
+
+    private Map<String, Calendar> parseTime(Path filePath) throws NullPointerException, IllegalArgumentException {
+
         List<String> startOrEndTimeParser = logParse(filePath);
         Map<String, Calendar> result = new HashMap<>();
         startOrEndTimeParser.forEach(s ->
@@ -57,7 +64,8 @@ public class Parser {
         return result;
     }
 
-    private List<String> logParse(Path filePath) {
+
+    private List<String> logParse(Path filePath) throws NullPointerException, IllegalArgumentException {
         List<String> result = new ArrayList<>();
         try (Stream<String> lineStream = Files.lines(filePath)) {
             result = lineStream.collect(Collectors.toList());

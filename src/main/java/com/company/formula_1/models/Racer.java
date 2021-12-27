@@ -1,8 +1,10 @@
 package com.company.formula_1.models;
 
-import java.util.Calendar;
+public record Racer(String name, String command, Long lapTime) implements Comparable<Racer> {
 
-public record Racer(String name, String command, Calendar lapTime)  {
-
+    @Override
+    public int compareTo(Racer o) {
+        return (int) (this.lapTime - o.lapTime);
     }
+}
 

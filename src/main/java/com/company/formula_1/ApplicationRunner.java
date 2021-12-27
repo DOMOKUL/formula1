@@ -10,13 +10,11 @@ public class ApplicationRunner {
 
     public static void main(String[] args) {
         Parser parser = new Parser();
+        Formatter formatter = new Formatter();
         List<Racer> racers = parser.racerParse("src/main/resources/abbreviations.txt",
                 "src/main/resources/start.log",
                 "src/main/resources/end.log");
-        for (Racer racer : racers) {
-            System.out.println(racer);
-        }
-        Formatter formatter = new Formatter();
-        //formatter.format(racers);
+        racers.stream().forEach(System.out::println);
+        System.out.println(formatter.format(racers));
     }
 }
