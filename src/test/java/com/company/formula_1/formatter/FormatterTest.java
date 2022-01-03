@@ -13,9 +13,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 class FormatterTest {
+
     Formatter formatter;
 
-    String RIGHT_STRING = """
+    private static final String EXPECTED_FORMULA_RESULT = """
             1. Sebastian Vettel     | FERRARI                      |01:04.415
             2. Daniel Ricciardo     | RED BULL RACING TAG HEUER    |01:12.013
             3. Valtteri Bottas      | MERCEDES                     |01:12.434
@@ -65,7 +66,7 @@ class FormatterTest {
                 new Racer("Pierre Gasly", "SCUDERIA TORO ROSSO HONDA", 72941L),
                 new Racer("Kimi Raikkonen", "FERRARI", 72639L));
         String actual = formatter.format(racerList);
-        assertEquals(RIGHT_STRING, actual);
+        assertEquals(EXPECTED_FORMULA_RESULT, actual);
     }
 
     @Test

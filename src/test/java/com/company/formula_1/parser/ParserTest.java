@@ -31,10 +31,9 @@ class ParserTest {
     }
 
     @Test
-    void racerParse_shouldThrowNullPointerException_whenInputNull(){
-        NullPointerException exception = assertThrows(NullPointerException.class,()->
-                parser.racerParse(null,null,null));
-        assertThat("FilePath is null",equalTo(exception.getMessage()));
+    void racerParse_shouldThrowNullPointerException_whenInputNull() {
+        NullPointerException exception = assertThrows(NullPointerException.class, () ->
+                parser.racerParse(null, null, null));
+        assertThat("FilePath is null", equalTo(exception.getMessage()));
     }
-
 }

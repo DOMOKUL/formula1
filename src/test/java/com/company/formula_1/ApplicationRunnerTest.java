@@ -48,6 +48,5 @@ class ApplicationRunnerTest {
         final String actual = formatter.format(RACERS);
 
         assertEquals(expected, actual);
-
     }
 }
