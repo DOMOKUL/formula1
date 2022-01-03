@@ -11,7 +11,7 @@ public class Formatter {
     private static final String LINE_BREAK = "\n";
     private static final String SPACE = " ";
     private static final String VERTICAL_LINE = "|";
-    SimpleDateFormat FORMAT_TIME = new SimpleDateFormat("mm:ss.SSS");
+    private static final SimpleDateFormat FORMAT_TIME = new SimpleDateFormat("mm:ss.SSS");
 
 
     public String format(List<Racer> racerList) {

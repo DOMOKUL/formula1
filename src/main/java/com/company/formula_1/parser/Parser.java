@@ -34,11 +34,10 @@ public class Parser {
                     .collect(Collectors.toList());
         } catch (NullPointerException e) {
             throw new NullPointerException("FilePath is null");
-
         }
     }
 
-    private Map<String, Map<String, String>> nameAndCommandParse(Path filePath) throws NullPointerException, IllegalArgumentException {
+    private Map<String, Map<String, String>> nameAndCommandParse(Path filePath) {
         List<String> abbreviations = logParse(filePath);
         Map<String, Map<String, String>> result = new HashMap<>();
 
@@ -52,18 +51,16 @@ public class Parser {
         return result;
     }
 
-    private Map<String, Calendar> parseTime(Path filePath) throws NullPointerException, IllegalArgumentException {
-
+    private Map<String, Calendar> parseTime(Path filePath) {
         List<String> startOrEndTimeParser = logParse(filePath);
         Map<String, Calendar> result = new HashMap<>();
         startOrEndTimeParser.forEach(s ->
                 result.put(s.substring(0, 3), getTime(s.substring(3, 26)))
-
         );
         return result;
     }
 
-    private List<String> logParse(Path filePath) throws NullPointerException, IllegalArgumentException {
+    private List<String> logParse(Path filePath) {
         List<String> result = new ArrayList<>();
         try (Stream<String> lineStream = Files.lines(filePath)) {
             result = lineStream.collect(Collectors.toList());
@@ -84,16 +81,16 @@ public class Parser {
         return calendar;
     }
 
-    private String getName(Map<String, String> innerMap) {
+    private String getName(Map<String, String> nameAndCommandMap) {
         StringBuilder name = new StringBuilder();
-        innerMap.forEach((k, v) -> name.append(k));
+        nameAndCommandMap.forEach((k, v) -> name.append(k));
 
         return name.toString();
     }
 
-    private String getCommand(Map<String, String> innerMap) {
+    private String getCommand(Map<String, String> nameAndCommandMap) {
         StringBuilder command = new StringBuilder();
-        innerMap.forEach((k, v) -> command.append(v));
+        nameAndCommandMap.forEach((k, v) -> command.append(v));
 
         return command.toString();
     }
